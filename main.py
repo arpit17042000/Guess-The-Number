@@ -1,6 +1,6 @@
 import random
 
-def fun(x):
+def guess_by_user(x):
     print("Do you want to play Y/N")
     choice=input()
     while choice=='Y':
@@ -35,8 +35,32 @@ def fun(x):
             print(f" Sorry you were not able to guess the number {random_number}")
         print("See it was so fun! Do you wish to play another game Y/N")
         choice=input()
+
+def guess_by_computer(x):
+    print("Oh! you want me to guess your number?! Fine then lest bring it on!")
+    low=1
+    high=x
+    print(f"Remember you have to choose between 1 and {x} and since i am not that 'smart' I need your help. Please give me feed back whther my guess was too high(h) or too low(l) or correct(c).So guess your number")
+    low,high,feedback,guess=1,x,'',0
     
+    while feedback!='c':
+        if low!=high:
+            guess=random.randint(low,high)#since randint throws an erorr that is why if else 
+        else:
+            guess=low
+        feedback=input(f"is {guess} too high,too low or correct")
+        if feedback == 'h':
+            high=guess-1
+        elif feedback=='l':
+            low=guess+1
+    print(f"See i may not be that dumb i guess your number correctly and that is {guess}")
+
+
 x=10
-print("Welcome! lets play 'Guess the Number' where I choose a number and you have to guess it. Afraid? Dont worry at each step i will be giving you hints whether your guess was to high or low. So are you ready?" )
-fun(x)
+choice=input("whom do you want to guess the number yourself(me) or the computer(c)")
+if choice=='me':
+    print("Welcome! lets play 'Guess the Number' where I choose a number and you have to guess it. Afraid? Dont worry at each step i will be giving you hints whether your guess was to high or low. So are you ready?" )
+    guess_by_user(x)
+else:
+    guess_by_computer(x)
 print("See you next time")
